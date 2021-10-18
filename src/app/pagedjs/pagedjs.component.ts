@@ -10,6 +10,8 @@ export class PagedjsComponent implements AfterViewInit {
   @ViewChild('content') content: ElementRef;
   @ViewChild('pdf') pdf: ElementRef;
 
+  constructor() { }
+
   ngAfterViewInit() {
       console.log(this.content.nativeElement.innerHTML);
   }
