@@ -16,4 +16,4 @@ jobs:
           name: deploy with github
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
       - name: rsync over ssh
-        run: rsync ./foo/ user@remote:bar/
+        run: rsync ./src/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:home/
