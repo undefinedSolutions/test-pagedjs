@@ -17,7 +17,5 @@ jobs:
           known_hosts: 'test'
       - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-      - name: testSSH
-        run: ssh ${{ secrets.SSH_PRIVATE_KEY }} {{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
       - name: rsync over ssh
-        run: rsync ./src/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:home/
+        run: rsync -avz ./src/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/
