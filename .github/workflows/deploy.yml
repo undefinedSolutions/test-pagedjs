@@ -1,0 +1,18 @@
+name: deploy
+
+on:
+  pull:
+      branches:
+        - main
+  
+jobs:
+  deploy:
+    steps:
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }} 
+          name: deploy with github
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - name: rsync over ssh
+        run: rsync ./foo/ user@remote:bar/
