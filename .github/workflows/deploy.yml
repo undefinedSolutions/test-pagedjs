@@ -43,17 +43,15 @@ jobs:
         with:
           name: my-build
 
-#      - name: deploy
-#      - uses: actions/checkout@master
-#      - uses: appleboy/scp-action@master
-#        with:
-#          host: ${{ secrets.SSH_HOST }}
-#          username: ${{ secrets.SSH_USER }}
-#          key: ${{ secrets.SSH_KEY }}
-#          port: ${{ secrets.SSH_PORT }}
-#          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-#          source: "dist/*"
-#          target: ${{ secrets.SSH_TARGET }}
+      - uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          source: "dist/*"
+          target: ${{ secrets.SSH_TARGET }}
 
 
 #name: scp files
