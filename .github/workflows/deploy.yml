@@ -15,9 +15,8 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        script: |
-          whoami
-          ls -al
+        source: "tests/a.txt,tests/b.txt"
+        target: ${{ secrets.SSH_TARGET }}
 
 
 #        host: ${{ secrets.SSH_HOST }}
