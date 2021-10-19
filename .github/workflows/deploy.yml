@@ -42,6 +42,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: my-build
+          path: dist
 
       - uses: appleboy/scp-action@master
         with:
