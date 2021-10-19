@@ -13,10 +13,20 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
         port: ${{ secrets.SSH_PORT }}
-        source: "tests/a.txt,tests/b.txt"
-        target: "test"
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        script: |
+          whoami
+          ls -al
+
+
+#        host: ${{ secrets.SSH_HOST }}
+#        username: ${{ secrets.SSH_USER }}
+#        key: ${{ secrets.SSH_KEY }}
+#        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+#        port: ${{ secrets.SSH_PORT }}
+#        source: "tests/a.txt,tests/b.txt"
+#        target: "test"
 #        host: ${{ secrets.SSH_HOST }}
 #        username: ${{ secrets.SSH_USER }}
 #        password: ${{ secrets.SSH_PASSWORD }}
