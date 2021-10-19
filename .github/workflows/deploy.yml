@@ -1,28 +1,58 @@
-name: scp files
-on: [push]
-jobs:
+name: Github Actions CI
 
-  build:
-    name: Linting
+on: [ pull_request ]
+
+jobs:
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12
-    - run: npm ci
-    - run: npm run lint
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
 
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    - uses: actions/checkout@master
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_KEY }}
-        port: ${{ secrets.SSH_PORT }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        source: "dist/*"
-        target: ${{ secrets.SSH_TARGET }}
+      - run: npm ci
+      - run: npm run lint
+
+#  test:
+#    name: Test
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: leafo/gh-actions-lua@v8.0.0
+#      - uses: leafo/gh-actions-luarocks@v4.0.0
+#
+#      - run: luarocks install busted
+#      - run: ./build-project.sh
+#      - run: ./run-test-suite.sh
+
+
+#name: scp files
+#on: [push]
+#jobs:
+#
+#  build:
+#    name: Linting
+#    runs-on: ubuntu-latest
+#    steps:
+#    - uses: actions/checkout@v2
+#    - uses: actions/setup-node@v1
+#      with:
+#        node-version: 12
+#    - run: npm ci
+#    - run: npm run lint
+#
+#  deploy:
+#    name: Deploy
+#    runs-on: ubuntu-latest
+#    - uses: actions/checkout@master
+#      uses: appleboy/scp-action@master
+#      with:
+#        host: ${{ secrets.SSH_HOST }}
+#        username: ${{ secrets.SSH_USER }}
+#        key: ${{ secrets.SSH_KEY }}
+#        port: ${{ secrets.SSH_PORT }}
+#        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+#        source: "dist/*"
+#        target: ${{ secrets.SSH_TARGET }}
